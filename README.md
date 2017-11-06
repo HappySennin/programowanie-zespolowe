@@ -18,10 +18,8 @@ Run the following command under frontend/ directory:
 
 ```
 npm install
-
+npm run dev
 ```
-  
-It can take a while
 
 ## 2. Access App locally
 To access app please open web browser and enter following:
