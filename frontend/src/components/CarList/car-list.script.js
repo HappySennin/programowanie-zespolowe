@@ -1,5 +1,5 @@
 import Vue from 'vue'
-
+import {mapGetters} from 'vuex'
 
 export default Vue.extend({
   data() {
@@ -11,5 +11,11 @@ export default Vue.extend({
     return {
       tableData: Array(20).fill(item)
     }
+  },
+  computed: {
+    ...mapGetters({
+        testGetter: 'testGetter'
+                 })
+    }
   }
-})
+)
