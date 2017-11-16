@@ -2,19 +2,13 @@ import Vue from 'vue'
 import App from './App/app.vue'
 import router from './router'
 import {store} from './store'
+import ElementUI from 'element-ui';
+import locale from 'element-ui/lib/locale/lang/en'
 
-import {Menu, Submenu, MenuItem, MenuItemGroup, Table, TableColumn, Row, Col, Header, Aside } from 'element-ui'
 
-Vue.use(Menu)
-Vue.use(Submenu)
-Vue.use(MenuItem)
-Vue.use(MenuItemGroup)
-Vue.use(Table)
-Vue.use(TableColumn)
-Vue.use(Row)
-Vue.use(Col)
-Vue.use(Header)
-Vue.use(Aside)
+Vue.use(ElementUI, { locale })
+Vue.config.lang = 'en';
+
 
 Vue.config.productionTip = false
 

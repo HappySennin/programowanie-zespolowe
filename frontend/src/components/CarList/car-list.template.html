@@ -1,10 +1,8 @@
 <el-main>
-  <el-table :data="tableData">
-    <el-table-column prop="carBrand" :label="testGetter" >
-    </el-table-column>
-    <el-table-column prop="price" label="Price">
-    </el-table-column>
-    <el-table-column prop="location" label="Location">
-    </el-table-column>
+  <el-table :data="cars">
+    <el-table-column prop="id" :label="testGetter" />
+    <el-table-column prop="carBrand" label="Car Brand" />
+    <el-table-column prop="price" label="Price"/>
+    <el-table-column prop="location" label="Location"/>
   </el-table>
 </el-main>
