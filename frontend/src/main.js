@@ -1,6 +1,6 @@
 
 import Vue from 'vue'
-import App from './App'
+import App from './App/app.vue'
 import router from './router'
 
 import {Menu, Submenu, MenuItem, MenuItemGroup, Table, TableColumn, Row, Col, Header, Aside } from 'element-ui'
