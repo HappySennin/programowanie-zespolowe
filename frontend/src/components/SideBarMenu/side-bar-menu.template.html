@@ -2,19 +2,31 @@
   <el-menu :default-openeds="['1', '3']">
     <router-link to="/">
     <el-submenu index="1">
-      <template slot="title"><img class="icon-car" src="../../assets/ic_directions_car_black_24dp_1x.png" alt="my icon"/>Car</template>
-      <el-menu-item index="1-1">Sedan</el-menu-item>
-      <el-menu-item index="1-2">SUV</el-menu-item>
-      <el-menu-item index="1-3">Van</el-menu-item>
-      <el-menu-item index="1-4">Sports Car</el-menu-item>
-      <el-menu-item index="1-5">Luxury Car</el-menu-item>
-      <el-menu-item index="1-6">Truck</el-menu-item>
+      <template slot="title"><img class="icon-car" src="../../assets/ic_directions_car_black_24dp_1x.png" alt="my icon"/>Cars</template>
+      <router-link to="sedan-cars">
+        <el-menu-item index="1-1">Sedan</el-menu-item>
+      </router-link>
+      <router-link to="suv-cars">
+        <el-menu-item index="1-2">SUV</el-menu-item>
+      </router-link>
+      <router-link to="van-cars">
+        <el-menu-item index="1-3">Van</el-menu-item>
+      </router-link>
+      <router-link to="sport-cars">
+        <el-menu-item index="1-4">Sports Car</el-menu-item>
+      </router-link>
+      <router-link to="/luxury-cars">
+        <el-menu-item index="1-5">Luxury Car</el-menu-item>
+      </router-link>
+      <router-link to="/truck-cars">
+        <el-menu-item index="1-6">Truck</el-menu-item>
+      </router-link>
     </el-submenu>
     </router-link>
     <el-menu-item index="3">
       <img class="icon-location" src="../../assets/ic_location_on_black_24dp_1x.png" alt="my icon"/>
       <span>Locations</span>
-    </el-menu-item>
+    </el-menu-item> 
     <el-menu-item index="3">
       <img class="icon-offer" src="../../assets/ic_local_offer_black_24dp_1x.png" alt="my icon"/>
       <span>Offers</span>

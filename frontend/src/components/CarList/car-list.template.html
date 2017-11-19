@@ -1,8 +1,3 @@
 <el-main>
-  <el-table :data="cars">
-    <el-table-column prop="id" :label="testGetter" />
-    <el-table-column prop="carBrand" label="Car Brand" />
-    <el-table-column prop="price" label="Price"/>
-    <el-table-column prop="location" label="Location"/>
-  </el-table>
+  <single-car-card v-for="(car, i) in cars" key="index" :brand="car.brand" :year="car.year" :type="car.type" :dayPrice="car.dayPrice"/>
 </el-main>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import {mapGetters} from 'vuex'
-import SingleCarCard from '../Single Car Card/single-car-card.vue'
+import SingleCarCard from '../../Single Car Card/single-car-card.vue'
+import _ from 'lodash'
 
 export default Vue.extend({
   components: {'single-car-card': SingleCarCard},
@@ -8,7 +9,10 @@ export default Vue.extend({
     ...mapGetters({
         testGetter: 'testGetter',
         cars: 'cars'
-                 })
+                 }),
+    filteredCars() {
+      return _.filter(this.cars, { 'type': 'Luxury'});
+    }
     }
   }
 )
