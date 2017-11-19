@@ -1,0 +1,19 @@
+<div id="app">
+  <el-row>
+    <el-col :span="24">
+      <el-header >
+        <img src="../assets/dummy-logo.png" />
+      </el-header>
+    </el-col>
+  </el-row>
+
+  <el-row style="width:90%; margin:auto">
+    <el-col :span="4">
+      <side-bar-menu/>
+    </el-col>
+    <el-col :span="20">
+      <router-view></router-view>
+    </el-col>
+  </el-row>
+
+</div>
