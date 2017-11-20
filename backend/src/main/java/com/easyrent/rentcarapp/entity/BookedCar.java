@@ -1,4 +1,4 @@
-package com.easyrent.rentcarapp;
+package com.easyrent.rentcarapp.entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
