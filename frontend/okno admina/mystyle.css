@@ -1,0 +1,11 @@
+#main { height: 100%; width: 100%; overflow: scroll; }
+
+thead, tbody { display: block; }
+
+table {
+    height: 600px; width: 85%; overflow: scroll;
+}
+
+td {
+    background-color: #ffffff; margin: 100px;
+}

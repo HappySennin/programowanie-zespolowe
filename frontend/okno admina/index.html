@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body style= "background-color: #e6e6ff">
+
+
+
+
+<center>
+<table>
+    <thead>
+    <tr> <th width = 2%> ID </th> <th width = 5%>user</th><th width = 25%> Title</th> <th> Post</th> </tr>
+    </thead>
+<tbody id="main" data-bind="foreach: items , event: { scroll: scrolled }">
+
+<th>
+    <td data-bind="text: id" width= 2%></td> </th>
+    <td data-bind="text: userId" width = 5%></td>
+    <td data-bind="text: title" width = 25%></td>
+    <td data-bind="text: body"></td>
+</tr>
+
+</tbody>
+</table>
+</center>
+
+
+<!--<center><div id="main" data-bind="foreach: items, event: { scroll: scrolled }">-->
+
+    <!--<div data-bind="text: body">  </div>-->
+    <!--<div id data-bind="text: userId"> </div>-->
+    <!--&lt;!&ndash;<span data-bind="text: use/dirId"></span>&ndash;&gt;-->
+    <!--</div> </center>-->
+
+
+<script src= 'knockout-3.4.2.js' ></script>
+<script src="handlebars-v4.0.10.js"></script>
+<script src="jquery-3.2.1.min.js"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
