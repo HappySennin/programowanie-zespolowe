@@ -6,7 +6,6 @@ import com.easyrent.rentcarapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @Service("userService")
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public List<User> findByLogin(String login)
+    public User findByLogin(String login)
     {
         return userRepository.findByLogin(login);
     }

@@ -1,52 +1,30 @@
 package com.easyrent.rentcarapp.controller;
 
 import com.easyrent.rentcarapp.entity.User;
-import com.easyrent.rentcarapp.service.UserService;
+import com.easyrent.rentcarapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigDecimal;
-import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserRepository userRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @RequestMapping(value = "/users", method = RequestMethod.GET)
-   public List<User> getAllCars() { return userService.findAllUsers(); }
-
-    @RequestMapping(value = "/users/id/{id}", method = RequestMethod.GET)
-    public User getUserById(@PathVariable Long id) {
-        return userService.findUserById(id);
+    public UserController(UserRepository userRepository,
+                          BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @RequestMapping(value = "/users/login/{login}", method = RequestMethod.GET)
-    public List<User> getUsersByLogin(@PathVariable String login) {
-        return userService.findByLogin(login);
+    @PostMapping("/sign-up")
+    public void signUp(@RequestBody User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        userRepository.save(user);
     }
-
-    @RequestMapping(value = "/users/pssword/{password}", method = RequestMethod.GET)
-    public List<User> getUsersByPassword(@PathVariable String password) {
-        return userService.findByPassword(password);
-    }
-
-    @RequestMapping(value = "/users", method = RequestMethod.PUT)
-    public void updateUser(@RequestBody User user) {
-        userService.updateUser(user);
-    }
-
-    @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public void insertNewUser(@RequestBody User user) {
-        userService.saveUser(user);
-    }
-
-    @RequestMapping(value = "/users/{id}", method = RequestMethod.DELETE)
-    public void deleteUserById(@RequestBody Long id) {
-        userService.deleteUserById(id);
-    }
-
 }
 
 

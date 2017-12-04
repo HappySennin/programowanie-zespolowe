@@ -11,7 +11,7 @@ public interface UserService
 
     User findUserById(Long id);
 
-    List<User> findByLogin(String login);
+    User findByLogin(String login);
 
     List<User> findByPassword(String password);
 
