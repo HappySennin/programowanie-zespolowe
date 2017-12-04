@@ -9,10 +9,17 @@ export default Vue.extend({
         carTypes: 'carTypes'
       })
     },
+  methods: {
+  popUp() {
+    this.$alert('Reservation confirmed', 'Success', {
+      confirmButtonText: 'OK',
+  });
+  }
+},
   data() {
     return {
       value: '',
-      value3: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
+      value3: [new Date(2017, 10, 10, 10, 10), new Date(2017, 10, 11, 10, 10)],
       value4: ''
     }
   }
