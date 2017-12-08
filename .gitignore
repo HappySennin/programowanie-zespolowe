@@ -1,5 +1,6 @@
 backend/target/
 backend/!.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/
 
 ### STS ###
 backend/.apt_generated

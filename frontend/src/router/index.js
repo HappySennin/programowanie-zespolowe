@@ -8,7 +8,7 @@ import SportCars from '../components/Cars/Sport/sport-car.vue'
 import SUVCars from '../components/Cars/SUV/suv-car.vue'
 import TruckCars from '../components/Cars/Truck/truck-car.vue'
 import VanCars from '../components/Cars/Van/van-car.vue'
-import Registration from '../components/Registration/registration.vue'
+// import Registration from '../components/Registration/registration.vue'
 
 Vue.use(Router)
 
@@ -22,7 +22,7 @@ export default new Router({
     { path: '/suv-cars', component: SUVCars },
     { path: '/truck-cars', component: TruckCars },
     { path: '/van-cars', component: VanCars },
-    { path: '/registration', component: Registration },
+    // { path: '/registration', component: Registration },
 
 
   ],

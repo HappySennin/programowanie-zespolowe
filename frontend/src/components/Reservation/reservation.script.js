@@ -3,18 +3,16 @@ import {mapGetters} from 'vuex'
 
 export default Vue.extend({
     computed: {
-      ...mapGetters({
-        testGetter: 'testGetter',
-        cars: 'cars',
+      ...mapGetters('carsData', {
         carTypes: 'carTypes'
       })
     },
-  data() {
-    return {
-      value: '',
-      value3: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
-      value4: ''
+    data() {
+      return {
+        value: '',
+        value3: [new Date(2000, 10, 10, 10, 10), new Date(2000, 10, 11, 10, 10)],
+        value4: ''
+      }
     }
-  }
   }
 )

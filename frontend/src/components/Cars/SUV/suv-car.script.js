@@ -1,18 +1,33 @@
 import Vue from 'vue'
-import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 import SingleCarCard from '../../Single Car Card/single-car-card.vue'
-import _ from 'lodash'
 
 export default Vue.extend({
-  components: {'single-car-card': SingleCarCard},
-  computed: {
-    ...mapGetters({
-        testGetter: 'testGetter',
-        cars: 'cars'
-                 }),
-    filteredCars() {
-      return _.filter(this.cars, { 'type': 'SUV'});
-    }
+    components: {'single-car-card': SingleCarCard},
+    computed: {
+      ...mapGetters('carsData', {
+        suvCars: 'suvCars'
+      }),
+    },
+    methods: {
+      ...mapActions('carsData', {
+        setSuvCars: 'setSuvCars'
+      }),
+      getSuvCars() {
+        if (this.suvCars.length === 0) {
+          this.$http.get(`cars/type/suv`)
+            .then(response => {
+              console.log(response)
+              this.setSuvCars({suvCars: response.body})
+            }, response => {
+              console.log("error callback")
+              console.log(response)
+            });
+        }
+      },
+    },
+    mounted() {
+      this.getSuvCars()
     }
   }
 )

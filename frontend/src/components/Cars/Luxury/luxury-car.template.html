@@ -1,3 +1,3 @@
 <el-main>
-  <single-car-card v-for="(car, i) in filteredCars" key="index" :brand="car.brand" :year="car.year" :type="car.type" :dayPrice="car.dayPrice"/>
+  <single-car-card v-for="(car, i) in luxuryCars" key="index" :brand="car.brandName" :model='car.modelName' :power="car.power" :type="car.typeName" :price="car.price"/>
 </el-main>
