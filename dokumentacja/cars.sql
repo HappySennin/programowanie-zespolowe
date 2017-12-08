@@ -12,4 +12,8 @@ values ('Mazda','Mazda 6','184 HP',450.0,'Sedan'),
 ('BMW','X1','228 HP',742.16,'SUV'),
 ('Volkswagen','Crafter','140 HP',1605.36,'Truck'),
 ('Fiat','Ducato L2H2','130 HP',1352.64,'Truck'),
-('Iveco','Daily','180 HP',1942.46,'Truck');
+('Iveco','Daily','180 HP',1942.46,'Truck'),
+('Audi','R8 Coupe Trims','540 HP',2500.00,'Sport Car'),
+('Mercedes-Benz','Maybach','463 HP',1300.00,'Luxury'),
+('Mercedes-Benz','Maybach','463 HP',1300.00,'Luxury');
+
