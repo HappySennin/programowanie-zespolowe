@@ -5,5 +5,6 @@ export default {
   'suvCars': (state) => state.cars.suv,
   'truckCars': (state) => state.cars.truck,
   'vanCars': (state) => state.cars.van,
-  'carTypes': (state) => Object.keys(state.cars)
+  'carTypes': (state) => Object.keys(state.cars),
+  'allCategoriesCars': (state) => state.allCategoriesCars
 }
