@@ -1,0 +1,31 @@
+<div class="log-in">
+  <el-row>
+    <el-col :span="24">
+      <h1>Sign in to our rent car site !</h1>
+    </el-col>
+  </el-row>
+  <el-row>
+    <el-col :span="5">
+      <br/>
+    </el-col>
+
+    <el-row class="stepper">
+      <el-col :span="14">
+        <!--<el-input placeholder="Please input" ></el-input>-->
+        <el-steps :active="active" finish-status="success">
+          <el-step title="Login"></el-step>
+          <el-step title="Password"></el-step>
+        </el-steps>
+        <el-input :placeholder="placeholder" :type="type" v-model="input"></el-input>
+        <div class="button-next">
+          <el-button style="margin-top: 12px;" @click="next">Next</el-button>
+        </div>
+      </el-col>
+    </el-row>
+
+    <el-col :span="5">
+      <br/>
+    </el-col>
+  </el-row>
+
+</div>
