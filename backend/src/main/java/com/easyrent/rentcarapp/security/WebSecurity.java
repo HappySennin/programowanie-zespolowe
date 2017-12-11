@@ -13,6 +13,7 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.context.annotation.Bean;
 
+import static com.easyrent.rentcarapp.security.SecurityConstants.CARS_URL;
 import static com.easyrent.rentcarapp.security.SecurityConstants.SIGN_UP_URL;
 
 @EnableWebSecurity
@@ -28,6 +29,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers(HttpMethod.GET, CARS_URL).permitAll()
                 .antMatchers(HttpMethod.POST, SIGN_UP_URL).permitAll()
                 .anyRequest().authenticated()
                 .and()

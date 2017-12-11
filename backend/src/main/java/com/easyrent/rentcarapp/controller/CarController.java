@@ -3,6 +3,7 @@ package com.easyrent.rentcarapp.controller;
 import com.easyrent.rentcarapp.entity.Car;
 import com.easyrent.rentcarapp.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;

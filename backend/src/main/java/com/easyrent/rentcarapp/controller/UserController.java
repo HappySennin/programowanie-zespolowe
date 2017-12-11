@@ -1,6 +1,6 @@
 package com.easyrent.rentcarapp.controller;
 
-import com.easyrent.rentcarapp.entity.User;
+import com.easyrent.rentcarapp.entity.AppUser;
 import com.easyrent.rentcarapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +21,9 @@ public class UserController {
     }
 
     @PostMapping("/sign-up")
-    public void signUp(@RequestBody User user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public void signUp(@RequestBody AppUser appUser) {
+        appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
+        userRepository.save(appUser);
     }
 }
 

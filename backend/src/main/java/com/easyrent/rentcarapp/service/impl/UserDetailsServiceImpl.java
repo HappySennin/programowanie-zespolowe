@@ -1,5 +1,6 @@
 package com.easyrent.rentcarapp.service.impl;
 
+import com.easyrent.rentcarapp.entity.AppUser;
 import com.easyrent.rentcarapp.repository.UserRepository;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,10 +20,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        com.easyrent.rentcarapp.entity.User user = applicationUserRepository.findByLogin(username);
-        if (user == null) {
+        AppUser appUser = applicationUserRepository.findByLogin(username);
+        if (appUser == null) {
             throw new UsernameNotFoundException(username);
         }
-        return new User(user.getLogin(), user.getPassword(), emptyList());
+        return new User(appUser.getLogin(), appUser.getPassword(), emptyList());
     }
 }

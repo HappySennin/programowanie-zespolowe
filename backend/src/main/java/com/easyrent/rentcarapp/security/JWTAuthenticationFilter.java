@@ -1,5 +1,6 @@
 package com.easyrent.rentcarapp.security;
 
+import com.easyrent.rentcarapp.entity.AppUser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -34,12 +35,12 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public Authentication attemptAuthentication(HttpServletRequest req,
                                                 HttpServletResponse res) throws AuthenticationException {
         try {
-            User creds = new ObjectMapper()
-                    .readValue(req.getInputStream(), User.class);
+            AppUser creds = new ObjectMapper()
+                    .readValue(req.getInputStream(), AppUser.class);
 
             return authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
-                            creds.getUsername(),
+                            creds.getLogin(),
                             creds.getPassword(),
                             new ArrayList<>())
             );

@@ -1,23 +1,23 @@
 package com.easyrent.rentcarapp.service;
 
-import com.easyrent.rentcarapp.entity.User;
+import com.easyrent.rentcarapp.entity.AppUser;
 
 
 import java.util.List;
 
 public interface UserService
 {
-    List<User> findAllUsers();
+    List<AppUser> findAllUsers();
 
-    User findUserById(Long id);
+    AppUser findUserById(Long id);
 
-    User findByLogin(String login);
+    AppUser findByLogin(String login);
 
-    List<User> findByPassword(String password);
+    List<AppUser> findByPassword(String password);
 
-    void saveUser(User user);
+    void saveUser(AppUser appUser);
 
-    void updateUser(User user);
+    void updateUser(AppUser appUser);
 
     void deleteUserById(Long id);
 }
