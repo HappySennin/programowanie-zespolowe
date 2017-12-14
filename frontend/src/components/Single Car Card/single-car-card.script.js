@@ -31,5 +31,10 @@ export default Vue.extend({
         carTypes: 'carTypes'
       })
     },
+  methods: {
+    handleRentCar() {
+      console.log("here will be request to server about this car availability")
+    }
+  }
   }
 )
