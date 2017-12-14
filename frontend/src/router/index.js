@@ -9,6 +9,7 @@ import SUVCars from '../components/Cars/SUV/suv-car.vue'
 import TruckCars from '../components/Cars/Truck/truck-car.vue'
 import VanCars from '../components/Cars/Van/van-car.vue'
 import SignIn from '../components/Sign in/sign-in.vue'
+import Locations from '../components/Locations/locations.vue'
 
 Vue.use(Router)
 
@@ -23,6 +24,7 @@ export default new Router({
     { path: '/truck-cars', component: TruckCars },
     { path: '/van-cars', component: VanCars },
     { path: '/sign-in', component: SignIn },
+    { path: '/locations', component: Locations },
     // { path: '/registration', component: Registration },
 
 

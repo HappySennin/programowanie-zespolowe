@@ -1,0 +1,26 @@
+<div class="locations">
+  <el-row>
+    <el-col :span="4">
+      <br/>
+    </el-col>
+    <el-col :span="16">
+      <gmap-map
+        class="google-map"
+        :center="center"
+        :zoom="9"
+      >
+        <gmap-marker
+          :key="index"
+          v-for="(m, index) in markers"
+          :position="m.position"
+          :clickable="true"
+          :draggable="true"
+          @click="center=m.position"
+        ></gmap-marker>
+      </gmap-map>
+    </el-col>
+    <el-col :span="4">
+      <br/>
+    </el-col>
+  </el-row>
+</div>
