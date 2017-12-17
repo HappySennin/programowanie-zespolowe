@@ -13,30 +13,42 @@ import java.util.List;
 public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
-    private ReservationRepository carRepository;
+    private ReservationRepository reservationRepository;
 
     @Override
     public List<Reservation> findAllReservations() {
-        return ReservationRepository.findAllReservations();
+        return reservationRepository.findAllReservations();
     }
 
     @Override
     public Reservation findReservationById(Long id) {
-        return ReservationRepository.findReservationById(id);
+        return reservationRepository.findReservationById(id);
     }
 
     @Override
     public List<Reservation> findByUserId(Long userId) {
-        return ReservationRepository.findByUserId(userId);
+        return reservationRepository.findByUserId(userId);
     }
 
     @Override
-    public List<Reservation> findByCarId(Long carId) {
-        return ReservationRepository.findByCarId(Long carId);
+    public List<Reservation> findByCarId(Long reservationId) {
+        return reservationRepository.findByCarId(reservationId);
+    }
+
+    @Override
+    public void saveReservation(Reservation reservation)
+    {
+        reservationRepository.save(reservation);
+    }
+
+    @Override
+    public void updateReservation(Reservation reservation)
+    {
+        reservationRepository.save(reservation);
     }
 
     @Override
     public void deleteReservationById(Long id) {
-        ReservationRepository.delete(id);
+        reservationRepository.delete(id);
     }
 }
