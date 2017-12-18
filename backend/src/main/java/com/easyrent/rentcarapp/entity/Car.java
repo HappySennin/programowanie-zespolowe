@@ -18,10 +18,48 @@ public class Car {
     private Long id;
     private String brandName;
     private String modelName;
+
+    public Long getId()
+    {
+        return id;
+    }
+
+    public String getBrandName()
+    {
+        return brandName;
+    }
+
+    public String getModelName()
+    {
+        return modelName;
+    }
+
+    public String getTypeName()
+    {
+        return typeName;
+    }
+
+    public String getPower()
+    {
+        return power;
+    }
+
+    public BigDecimal getPrice()
+    {
+        return price;
+    }
+
     private String typeName;
     private String power;
     private BigDecimal price;
 
+    public Car(String brand, String model, String type, String power, BigDecimal price) {
+        this.brandName = brand;
+        this.modelName = model;
+        this.typeName = type;
+        this.power = power;
+        this.price = price;
+    }
     @Override
     public String toString() {
         return "brandName=" + brandName + ", modelName=" + modelName + ", typeName=" + typeName + ", power=" + power +", price=$" + price;
