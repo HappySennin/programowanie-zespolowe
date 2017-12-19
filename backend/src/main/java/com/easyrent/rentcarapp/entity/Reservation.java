@@ -21,9 +21,9 @@ public class Reservation {
     private Long id;
     private long userId;
     private long carId;
-    @DateTimeFormat(pattern="dd.MM.yyyy hh:mm")
+    @DateTimeFormat(pattern="YYYY-MM-DD HH:MM:SS")
     private Date startDate;
-    @DateTimeFormat(pattern="dd.MM.yyyy hh:mm")
+    @DateTimeFormat(pattern="YYYY-MM-DD HH:MM:SS")
     private Date endDate;
     private BigDecimal price;
 
