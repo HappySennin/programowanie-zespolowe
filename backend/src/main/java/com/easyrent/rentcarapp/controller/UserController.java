@@ -24,6 +24,11 @@ public class UserController {
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         return userService.saveUser(appUser);
     }
+
+    @GetMapping("/getid/{username}")
+    public Long getUserId(@PathVariable String username) {
+        return userService.findByLogin(username).getId();
+    }
 }
 
 
