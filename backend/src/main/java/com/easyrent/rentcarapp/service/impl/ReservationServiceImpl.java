@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Service("reservationService")
@@ -50,5 +51,10 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void deleteReservationById(Long id) {
         reservationRepository.delete(id);
+    }
+
+    @Override
+    public List<Date> getReservationAvailability(Long car_id, Date start, Date end) {
+        return null;
     }
 }

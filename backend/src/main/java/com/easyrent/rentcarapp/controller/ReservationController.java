@@ -3,8 +3,10 @@ package com.easyrent.rentcarapp.controller;
 import com.easyrent.rentcarapp.entity.Reservation;
 import com.easyrent.rentcarapp.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -15,7 +17,9 @@ public class ReservationController {
 
     @CrossOrigin(origins = "http://localhost:8000")
     @RequestMapping(value = "/reservations", method = RequestMethod.GET)
-    public List<Reservation> findAllReservations() { return reservationService.findAllReservations(); }
+    public List<Reservation> findAllReservations() {
+        return reservationService.findAllReservations();
+    }
 
     @CrossOrigin(origins = "http://localhost:8000")
     @RequestMapping(value = "/reservations/id/{id}", method = RequestMethod.GET)
@@ -52,7 +56,12 @@ public class ReservationController {
     public void deleteReservationById(@RequestBody Long id) {
         reservationService.deleteReservationById(id);
     }
+
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/reservations/car/{car_id}/start/{start}/end/{end}", method = RequestMethod.GET)
+    public List<Date> getReservationAvailability(@PathVariable Long car_id,
+                                                 @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") Date start,
+                                                 @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") Date end) {
+        return reservationService.getReservationAvailability(car_id, start, end);
+    }
 }
-
-
-

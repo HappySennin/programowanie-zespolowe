@@ -4,6 +4,7 @@ import com.easyrent.rentcarapp.entity.Car;
 import com.easyrent.rentcarapp.entity.Reservation;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 public interface ReservationService {
@@ -21,4 +22,6 @@ public interface ReservationService {
     void updateReservation(Reservation reservation);
 
     void deleteReservationById(Long reservation);
+
+    List<Date> getReservationAvailability(Long car_id, Date start, Date end);
 }
