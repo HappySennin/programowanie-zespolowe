@@ -15,7 +15,7 @@ public interface UserService
 
     List<AppUser> findByPassword(String password);
 
-    void saveUser(AppUser appUser);
+    boolean saveUser(AppUser appUser);
 
     void updateUser(AppUser appUser);
 

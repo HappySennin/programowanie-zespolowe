@@ -38,9 +38,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(AppUser appUser)
+    public boolean saveUser(AppUser appUser)
     {
+        if(!(findByLogin(appUser.getLogin()) == null)) {
+            return false;
+        }
         userRepository.save(appUser);
+        return true;
     }
 
     @Override
