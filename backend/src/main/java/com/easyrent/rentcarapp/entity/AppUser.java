@@ -14,7 +14,7 @@ public class AppUser
     private long id;
     private String login;
     private String password;
-    private Boolean isSuperUser;
+    private Boolean isSuperUser = false;
 
     public Boolean getSuperUser()
     {
