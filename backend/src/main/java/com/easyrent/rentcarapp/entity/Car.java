@@ -55,6 +55,28 @@ public class Car {
     private String typeName;
     private String power;
     private BigDecimal price;
+    private String lokalizacje = "";
+    private String url;
+
+    public String getUrl()
+    {
+        return url;
+    }
+
+    public void setUrl(String url)
+    {
+        this.url = url;
+    }
+
+    public String getLokalizacje()
+    {
+        return lokalizacje;
+    }
+
+    public void setLokalizacje(String lokalizacje)
+    {
+        this.lokalizacje = lokalizacje;
+    }
 
     public Car(String brand, String model, String type, String power, BigDecimal price) {
         this.brandName = brand;
@@ -65,6 +87,6 @@ public class Car {
     }
     @Override
     public String toString() {
-        return "brandName=" + brandName + ", modelName=" + modelName + ", typeName=" + typeName + ", power=" + power +", price=$" + price;
+        return "brandName=" + brandName + ", modelName=" + modelName + ", typeName=" + typeName + ", power=" + power +", price=$" + price +", localization=" + lokalizacje +", url=" + url;
     }
 }
