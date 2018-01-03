@@ -1,0 +1,33 @@
+<div class="registration">
+  <el-row>
+    <el-col :span="24">
+      <h1>Register to our rent car site !</h1>
+    </el-col>
+  </el-row>
+  <el-row class="container">
+    <el-col :span="5">
+      <br/>
+    </el-col>
+
+    <el-row class="login-container">
+      <el-col :span="24">
+        <el-input placeholder="Login" v-model="login" class="login-input"></el-input>
+      </el-col>
+    </el-row>
+    <el-row class="password-container">
+      <el-col :span="24">
+        <el-input placeholder="Password" type="password" v-model="password" class="password-input"></el-input>
+      </el-col>
+    </el-row>
+    <el-row class="register-btn-container">
+      <el-col :span="24">
+        <el-button class="register-btn" v-on:click="register">Register</el-button>
+      </el-col>
+    </el-row>
+
+    <el-col :span="5">
+      <br/>
+    </el-col>
+  </el-row>
+
+</div>
