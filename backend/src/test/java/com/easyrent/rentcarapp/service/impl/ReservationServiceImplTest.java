@@ -12,7 +12,10 @@ import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -20,10 +23,10 @@ import java.util.List;
 public class ReservationServiceImplTest {
 
     List<Reservation> reservations = Arrays.asList(
-            new Reservation( 1, 1, new Date(), new Date(), new BigDecimal(123.123)),
-            new Reservation( 1, 2, new Date(), new Date(), new BigDecimal(321.123)),
-            new Reservation( 2, 3, new Date(), new Date(), new BigDecimal(123.321)),
-            new Reservation( 3, 4, new Date(), new Date(), new BigDecimal(321.321))
+            new Reservation( 1, 1, convertToDate("01-01-1771"), convertToDate("03-01-1771"), new BigDecimal(123.123)),
+            new Reservation( 1, 2, convertToDate("05-01-1771"), convertToDate("07-01-1771"), new BigDecimal(321.123)),
+            new Reservation( 2, 3, convertToDate("11-01-1771"), convertToDate("13-01-1771"), new BigDecimal(123.321)),
+            new Reservation( 3, 3, convertToDate("17-01-1771"), convertToDate("19-01-1771"), new BigDecimal(321.321))
     );
 
     @Mock
@@ -68,5 +71,38 @@ public class ReservationServiceImplTest {
         List<Reservation> result = rs.findByCarId(3L);
         Assert.assertEquals(result.size(), 1);
         Assert.assertEquals(result.get(0).getUserId(), 2L);
+    }
+
+    @Test
+    public void testGetReservationAvailabilityWhenOneReservationExist(){
+        List<Reservation> output = Arrays.asList(reservations.get(2));
+        Mockito.when(rs.findByCarId(3L)).thenReturn(output);
+
+        List<Date> result = rs.getReservationAvailability(3L,convertToDate("01-01-1771"), convertToDate("20-01-1771") );
+
+        Assert.assertEquals(20-3, result.size());
+
+    }
+
+    @Test
+    public void testGetReservationAvailabilityWhenMultipleReservationExist(){
+        List<Reservation> output = Arrays.asList(reservations.get(2), reservations.get(3));
+        Mockito.when(rs.findByCarId(3L)).thenReturn(output);
+
+        List<Date> result = rs.getReservationAvailability(3L,convertToDate("01-01-1771"), convertToDate("20-01-1771") );
+
+        Assert.assertEquals(20-3-3, result.size());
+
+    }
+
+    private Date convertToDate(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Date dateToReturn = null;
+        try {
+            dateToReturn = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateToReturn;
     }
 }
