@@ -5,10 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.swing.text.Position;
 import java.math.BigDecimal;
 
 @Entity
@@ -21,6 +19,12 @@ public class Car {
     private Long id;
     private String brandName;
     private String modelName;
+    private String typeName;
+    private String power;
+    private BigDecimal price;
+    @Embedded
+    private Localization localization = new Localization();
+    private String url;
 
     public Long getId()
     {
@@ -52,12 +56,6 @@ public class Car {
         return price;
     }
 
-    private String typeName;
-    private String power;
-    private BigDecimal price;
-    private String lokalizacje = "";
-    private String url;
-
     public String getUrl()
     {
         return url;
@@ -68,14 +66,12 @@ public class Car {
         this.url = url;
     }
 
-    public String getLokalizacje()
-    {
-        return lokalizacje;
+    public Localization getLocalization() {
+        return localization;
     }
 
-    public void setLokalizacje(String lokalizacje)
-    {
-        this.lokalizacje = lokalizacje;
+    public void setLocalization(Localization localization) {
+        this.localization = localization;
     }
 
     public Car(String brand, String model, String type, String power, BigDecimal price) {
@@ -87,6 +83,7 @@ public class Car {
     }
     @Override
     public String toString() {
-        return "brandName=" + brandName + ", modelName=" + modelName + ", typeName=" + typeName + ", power=" + power +", price=$" + price +", localization=" + lokalizacje +", url=" + url;
+        return "brandName=" + brandName + ", modelName=" + modelName + ", typeName=" + typeName +
+                ", power=" + power +", price=$" + price +", localization=" + localization.toString() +", url=" + url;
     }
 }
