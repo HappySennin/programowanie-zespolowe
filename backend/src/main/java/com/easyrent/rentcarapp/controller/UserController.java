@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     @Autowired
@@ -19,13 +18,15 @@ public class UserController {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @PostMapping("/sign-up")
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/users/sign-up", method = RequestMethod.POST)
     public boolean signUp(@RequestBody AppUser appUser) {
         appUser.setPassword(bCryptPasswordEncoder.encode(appUser.getPassword()));
         return userService.saveUser(appUser);
     }
 
-    @GetMapping("/getid/{username}")
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "users/getid/{username}", method = RequestMethod.GET)
     public Long getUserId(@PathVariable String username) {
         return userService.findByLogin(username).getId();
     }
