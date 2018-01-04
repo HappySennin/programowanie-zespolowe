@@ -2,6 +2,7 @@ package com.easyrent.rentcarapp.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -15,15 +16,16 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private long userId;
     private long carId;
-    @DateTimeFormat(pattern="dd.MM.yyyy hh:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date startDate;
-    @DateTimeFormat(pattern="dd.MM.yyyy hh:mm")
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     private Date endDate;
     private BigDecimal price;
 
