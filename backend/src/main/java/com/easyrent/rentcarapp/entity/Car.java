@@ -25,6 +25,7 @@ public class Car {
     @Embedded
     private Localization localization = new Localization();
     private String url;
+    private boolean isBooked = false;
 
     public Long getId()
     {
@@ -72,6 +73,16 @@ public class Car {
 
     public void setLocalization(Localization localization) {
         this.localization = localization;
+    }
+
+    public boolean isBooked()
+    {
+        return isBooked;
+    }
+
+    public void setBooked(boolean booked)
+    {
+        isBooked = booked;
     }
 
     public Car(String brand, String model, String type, String power, BigDecimal price) {
