@@ -21,6 +21,8 @@ public interface CarService {
 
     List<Car> findByPrice(BigDecimal price);
 
+    List<Car> findAllAvailableCars();
+
     void saveCar(Car car);
 
     void updateCar(Car car);

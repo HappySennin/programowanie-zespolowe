@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.easyrent.rentcarapp.repository.CarRepository;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("carService")
@@ -23,6 +24,14 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car findCarById(Long id) {
         return carRepository.findById(id);
+    }
+
+    @Override
+    public List<Car> findAllAvailableCars() {
+        List<Car> allAvailableCars = new ArrayList<>();
+        allAvailableCars.addAll(carRepository.findAll());
+        allAvailableCars.removeIf(car -> car.isBooked());
+        return allAvailableCars;
     }
 
     @Override

@@ -22,6 +22,12 @@ public class CarController {
     }
 
     @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/cars/available", method = RequestMethod.GET)
+    public List<Car> getAllAvailableCars() {
+        return carService.findAllAvailableCars();
+    }
+
+    @CrossOrigin(origins = "http://localhost:8000")
     @RequestMapping(value = "/cars/id/{id}", method = RequestMethod.GET)
     public Car getCarById(@PathVariable Long id) {
         return carService.findCarById(id);

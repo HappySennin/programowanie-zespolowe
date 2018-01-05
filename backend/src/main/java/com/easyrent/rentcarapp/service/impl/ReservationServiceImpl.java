@@ -63,14 +63,7 @@ public class ReservationServiceImpl implements ReservationService {
         List<Reservation> reservationsForRequestedCar = findByCarId(car_id);
         List<Date> allDaysInRequestedPeriod = createAllDaysInRequestedPeriod(start, end);
 
-        Iterator<Date> allDaysInRequestedPeriodIterator = allDaysInRequestedPeriod.iterator();
-
-        while (allDaysInRequestedPeriodIterator.hasNext()){
-            Date actualDay = allDaysInRequestedPeriodIterator.next();
-
-            if (isAnyReservationOnThisDay(actualDay, reservationsForRequestedCar))
-                allDaysInRequestedPeriodIterator.remove();
-        }
+        allDaysInRequestedPeriod.removeIf(actualDay -> isAnyReservationOnThisDay(actualDay, reservationsForRequestedCar));
 
         return allDaysInRequestedPeriod;
     }
