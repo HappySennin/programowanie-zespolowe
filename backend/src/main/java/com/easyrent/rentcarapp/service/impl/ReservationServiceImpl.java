@@ -1,11 +1,15 @@
 package com.easyrent.rentcarapp.service.impl;
 
+import com.easyrent.rentcarapp.entity.Car;
+import com.easyrent.rentcarapp.entity.Localization;
 import com.easyrent.rentcarapp.entity.Reservation;
+import com.easyrent.rentcarapp.repository.CarRepository;
 import com.easyrent.rentcarapp.repository.ReservationRepository;
 import com.easyrent.rentcarapp.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 @Service("reservationService")
@@ -13,6 +17,8 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Autowired
     private ReservationRepository reservationRepository;
+    @Autowired
+    private CarRepository carRepository;
 
     @Override
     public List<Reservation> findAllReservations() {
@@ -67,6 +73,66 @@ public class ReservationServiceImpl implements ReservationService {
         }
 
         return allDaysInRequestedPeriod;
+    }
+
+    @Override
+    public void startNewReservation(Reservation reservation) {
+        Car requestedCar = carRepository.findById(reservation.getCarId());
+        requestedCar.setBooked(true);
+        carRepository.save(requestedCar);
+
+        reservation.setStartDate(getCurrentDate());
+        reservationRepository.save(reservation);
+
+    }
+
+    @Override
+    public void endReservation(Long reservationId, double latitude, double longitude) {
+        Reservation reservation = reservationRepository.findById(reservationId);
+
+        setReservationDataWhenEnds(reservation);
+        setCarDataAfterReservation(reservation, latitude, longitude);
+    }
+
+    private void setReservationDataWhenEnds(Reservation reservation) {
+        Date actualDate = getCurrentDate();
+        reservation.setEndDate(actualDate);
+        reservation.setPrice(calculatePrice(carRepository.findById(reservation.getCarId()),
+                                            reservation.getStartDate(), actualDate));
+        reservationRepository.save(reservation);
+    }
+
+    private void setCarDataAfterReservation(Reservation reservation, double latitude, double longitude) {
+        Car requestedCar = carRepository.findById(reservation.getCarId());
+        requestedCar.setBooked(false);
+        requestedCar.setLocalization(getActualLocalization(latitude, longitude));
+        carRepository.save(requestedCar);
+    }
+
+    private Localization getActualLocalization(double latitude, double longitude) {
+        Localization currentLocalization = new Localization();
+        currentLocalization.setLatitude(latitude);
+        currentLocalization.setLongitude(longitude);
+        return currentLocalization;
+    }
+
+    private BigDecimal calculatePrice(Car car, Date startDate, Date endDate) {
+        long howManyMinutes = getMinutesFromSecond((endDate.getTime() - startDate.getTime()));
+        System.out.println(howManyMinutes);
+        return car.getPrice().multiply(new BigDecimal(howManyMinutes));
+    }
+
+    private long getMinutesFromSecond(long miliSeconds) {
+        long minutes = miliSeconds / (60*1000);
+        if (miliSeconds/1000 % 60 != 0)
+            return ++minutes;
+        return minutes;
+    }
+
+
+    private Date getCurrentDate() {
+        Calendar c = Calendar.getInstance();
+        return c.getTime();
     }
 
     private boolean isAnyReservationOnThisDay(Date actualDay, List<Reservation> reservationsForRequestedCar) {

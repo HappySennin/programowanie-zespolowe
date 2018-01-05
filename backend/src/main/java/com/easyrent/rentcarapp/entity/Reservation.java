@@ -23,11 +23,20 @@ public class Reservation {
     private Long id;
     private long userId;
     private long carId;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date startDate;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     private Date endDate;
     private BigDecimal price;
+
+    public Reservation(long userId, long carId, Date startDate, Date endDate, BigDecimal price) {
+        this.userId = userId;
+        this.carId = carId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.price = price;
+
+    }
 
     public Long getId()
     {
@@ -87,15 +96,6 @@ public class Reservation {
     public void setPrice(BigDecimal price)
     {
         this.price = price;
-    }
-
-    public Reservation(long userId, long carId, Date startDate, Date endDate, BigDecimal price) {
-        this.userId = userId;
-        this.carId = carId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.price = price;
-
     }
 
     @Override

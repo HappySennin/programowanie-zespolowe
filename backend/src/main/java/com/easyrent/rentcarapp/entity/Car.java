@@ -27,6 +27,14 @@ public class Car {
     private String url;
     private boolean isBooked = false;
 
+    public Car(String brand, String model, String type, String power, BigDecimal price) {
+        this.brandName = brand;
+        this.modelName = model;
+        this.typeName = type;
+        this.power = power;
+        this.price = price;
+    }
+
     public Long getId()
     {
         return id;
@@ -83,14 +91,6 @@ public class Car {
     public void setBooked(boolean booked)
     {
         isBooked = booked;
-    }
-
-    public Car(String brand, String model, String type, String power, BigDecimal price) {
-        this.brandName = brand;
-        this.modelName = model;
-        this.typeName = type;
-        this.power = power;
-        this.price = price;
     }
     @Override
     public String toString() {
