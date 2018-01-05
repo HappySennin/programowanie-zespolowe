@@ -111,7 +111,6 @@ public class ReservationServiceImpl implements ReservationService {
 
     private BigDecimal calculatePrice(Car car, Date startDate, Date endDate) {
         long howManyMinutes = getMinutesFromSecond((endDate.getTime() - startDate.getTime()));
-        System.out.println(howManyMinutes);
         return car.getPrice().multiply(new BigDecimal(howManyMinutes));
     }
 
