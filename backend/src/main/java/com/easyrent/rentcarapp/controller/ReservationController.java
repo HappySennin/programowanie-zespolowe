@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class ReservationController {
@@ -60,8 +61,24 @@ public class ReservationController {
     @CrossOrigin(origins = "http://localhost:8000")
     @RequestMapping(value = "/reservations/car/{car_id}/start/{start}/end/{end}", method = RequestMethod.GET)
     public List<Date> getReservationAvailability(@PathVariable Long car_id,
-                                                 @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") Date start,
-                                                 @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") Date end) {
+                                                 @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm") Date start,
+                                                 @PathVariable @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm") Date end) {
         return reservationService.getReservationAvailability(car_id, start, end);
+    }
+
+    // Reservations for minutes
+
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/reservations/start", method = RequestMethod.POST)
+    public void startNewReservation(@RequestBody Reservation reservation) {
+        reservationService.startNewReservation(reservation);
+    }
+
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/reservations/end", method = RequestMethod.POST)
+    public void endReservation(@RequestBody Map<String, Object> payload) {
+        reservationService.endReservation(Long.parseLong((String) payload.get("id")),
+                Double.parseDouble((String) payload.get("latitude")),
+                Double.parseDouble((String) payload.get("longitude")));
     }
 }

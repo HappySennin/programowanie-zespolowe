@@ -1,9 +1,7 @@
 package com.easyrent.rentcarapp.service;
 
-import com.easyrent.rentcarapp.entity.Car;
 import com.easyrent.rentcarapp.entity.Reservation;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -24,4 +22,8 @@ public interface ReservationService {
     void deleteReservationById(Long reservation);
 
     List<Date> getReservationAvailability(Long car_id, Date start, Date end);
+
+    void startNewReservation(Reservation reservation);
+
+    void endReservation(Long reservationId, double latitude, double longitude);
 }
