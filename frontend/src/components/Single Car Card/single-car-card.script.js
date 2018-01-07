@@ -18,6 +18,10 @@ export default Vue.extend({
       price: {
         type: Number,
         required: true
+      },
+      image: {
+        type: String,
+        required: true
       }
       , power: {
         type: String,
