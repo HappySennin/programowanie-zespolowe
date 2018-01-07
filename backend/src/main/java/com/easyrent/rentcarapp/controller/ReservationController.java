@@ -29,13 +29,13 @@ public class ReservationController {
     }
 
     @CrossOrigin(origins = "http://localhost:8000")
-    @RequestMapping(value = "/reservations/user/{user}", method = RequestMethod.GET)
+    @RequestMapping(value = "/reservations/user/{userId}", method = RequestMethod.GET)
     public List<Reservation> getReservationsByUserId(@PathVariable Long userId) {
         return reservationService.findByUserId(userId);
     }
 
     @CrossOrigin(origins = "http://localhost:8000")
-    @RequestMapping(value = "/reservations/car/{car}", method = RequestMethod.GET)
+    @RequestMapping(value = "/reservations/car/{carId}", method = RequestMethod.GET)
     public List<Reservation> getReservationsByCarId(@PathVariable Long carId) {
         return reservationService.findByCarId(carId);
     }
