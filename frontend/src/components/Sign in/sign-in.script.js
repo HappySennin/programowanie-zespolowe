@@ -14,7 +14,9 @@ export default Vue.extend({
   },
 
   methods: {...mapActions('signIn', {
-    setLoginMode: 'setLoginMode'
+    setLoginMode: 'setLoginMode',
+    setUserLogin: 'setUserLogin',
+    setUserToken: 'setUserToken',
   }),
     next() {
       if(this.active === 0) {
@@ -48,14 +50,16 @@ export default Vue.extend({
         var self = this;
         this.$http.post('login', {login: self.login, password: self.password}, {headers: {"Content-Type": "application/json"}}).then(response => {
 
-          console.log("SIGN IN USER RESPONSE: ")
-          console.log(response)
+          // console.log("SIGN IN USER RESPONSE: ")
+          // console.log(response)
           if(response.status === 200 && response.ok === true) {
-            this.setLoginMode({userLogged: true})
-            this.$router.push('/')
-            this.open("Sign in", "User logged successfully !")
+            self.setLoginMode({userLogged: true})
+            self.setUserLogin({userLogin: self.login})
+            self.setUserToken({token: response.headers.map.authorization[0]})
+            self.$router.push('/')
+            self.open("Sign in", "User logged successfully !")
           } else {
-            this.handleLoginFailure()
+            self.handleLoginFailure()
           }
         }, response => {
           this.handleLoginFailure()

@@ -1,3 +1,5 @@
 export default {
-  userLogged: false
+  userLogged: false,
+  token: '',
+  userLogin: ''
 }

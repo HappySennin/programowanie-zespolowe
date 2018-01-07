@@ -2,7 +2,7 @@
   <el-row>
     <el-col :span="24">
       <el-header >
-        <img src="../assets/dummy-logo.png" />
+        <p v-if="userLogged">Hi {{userLogin}}</p>
       </el-header>
     </el-col>
   </el-row>
