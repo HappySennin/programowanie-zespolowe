@@ -1,3 +1,3 @@
 <el-main>
-  <single-car-card v-for="(car, i) in vanCars" key="index" :brand="car.brandName" :model='car.modelName' :power="car.power" :type="car.typeName" :price="car.price" :image="car.url"/>
+  <single-car-card v-for="(car, i) in vanCars" key="index" :id="car.id" :booked="car.booked" :brand="car.brandName" :model='car.modelName' :power="car.power" :type="car.typeName" :price="car.price" :image="car.url"/>
 </el-main>

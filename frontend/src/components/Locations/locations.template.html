@@ -7,17 +7,27 @@
       <gmap-map
         class="google-map"
         :center="center"
-        :zoom="9"
+        :zoom="12"
       >
         <gmap-marker
           :key="index"
-          v-for="(m, index) in markers"
-          :position="m.position"
+          v-for="(m, index) in availableCars"
+          :position="m.localization"
           :clickable="true"
           :draggable="true"
-          @click="center=m.position"
+          @click="foo(m)"
         ></gmap-marker>
       </gmap-map>
+      <el-dialog
+        :visible.sync="centerDialogVisible"
+        width="80%"
+        center>
+        </span>
+        <single-car-card :id="car.id" :booked="car.booked" :brand="car.brandName" :model='car.modelName' :power="car.power" :type="car.typeName" :price="car.price" :image="car.url"/>
+        <div style="text-align: right">
+          <el-button type="primary" @click="centerDialogVisible = false">Cancel</el-button>
+        </div>
+      </el-dialog>
     </el-col>
     <el-col :span="4">
       <br/>

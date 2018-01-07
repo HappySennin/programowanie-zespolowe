@@ -6,28 +6,33 @@ export default Vue.extend({
     components: {'single-car-card': SingleCarCard},
     computed: {
       ...mapGetters('carsData', {
-        luxuryCars: 'luxuryCars'
+        cars: 'cars'
       }),
     },
     methods: {
       ...mapActions('carsData', {
-        setLuxuryCars: 'setLuxuryCars'
+        setCars: 'setCars'
       }),
-      getLuxuryCars() {
-        if (this.luxuryCars.length === 0) {
-          this.$http.get(`cars/type/luxury`)
+      getCars() {
+          this.$http.get(`cars`)
             .then(response => {
-              console.log(response)
-              this.setLuxuryCars({luxuryCars: response.body})
+              this.setCars({cars: response.body})
             }, response => {
-              console.log("error callback")
-              console.log(response)
             });
-        }
       },
     },
+  data() {
+      return {
+        luxuryCars: []
+      }
+  },
     mounted() {
-      this.getLuxuryCars()
+      this.getCars()
+    },
+  watch: {
+    cars: function (val) {
+      this.luxuryCars = val.filter(c => c.typeName === 'Luxury')
     }
+  }
   }
 )

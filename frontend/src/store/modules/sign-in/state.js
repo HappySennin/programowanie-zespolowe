@@ -1,5 +1,6 @@
 export default {
   userLogged: false,
   token: '',
-  userLogin: ''
+  userLogin: '',
+  userID: undefined
 }

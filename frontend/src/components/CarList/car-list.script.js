@@ -6,24 +6,19 @@ export default Vue.extend({
     components: {'single-car-card': SingleCarCard},
     computed: {
       ...mapGetters('carsData', {
-        cars: 'allCategoriesCars'
+        cars: 'cars'
       }),
     },
     methods: {
       ...mapActions('carsData', {
-        setCars: 'setAllCategoriesCars'
+        setCars: 'setCars'
       }),
       getCars() {
-        if (this.cars.length === 0) {
-          this.$http.get(`cars`)
+          this.$http.get('cars')
             .then(response => {
-              console.log(response)
-              this.setCars({allCategoriesCars: response.body})
+              this.setCars({cars: response.body})
             }, response => {
-              console.log("error callback")
-              console.log(response)
             });
-        }
       },
     },
     mounted() {

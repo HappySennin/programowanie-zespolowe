@@ -21,10 +21,21 @@
             </el-col>
           </el-row>
           <el-row>
-            <el-button plain class="rent-button" v-on:click="handleRentCar">Rent This Car</el-button>
+            <el-button plain class="rent-button" v-on:click="handleRentCar" v-if="!carBooked">Rent This Car</el-button>
           </el-row>
         </el-col>
       </el-card>
+      <el-dialog
+        title="Warning"
+        :visible.sync="centerDialogVisible"
+        width="50%"
+        center >
+        <span>To rent a car, you must first sign in</span>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="centerDialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="moveToSignIn">Sign in</el-button>
+  </span>
+      </el-dialog>
     </el-col>
     <el-col :span="4">
       <br/>

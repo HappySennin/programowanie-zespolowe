@@ -9,6 +9,9 @@ export default {
   },
   [types.TOKEN]: (state, { token }) => {
     state.token = token;
+  },
+  [types.USER_ID]: (state, { userID }) => {
+    state.userID = userID;
   }
 
 }

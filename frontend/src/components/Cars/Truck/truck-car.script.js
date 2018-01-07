@@ -6,28 +6,33 @@ export default Vue.extend({
     components: {'single-car-card': SingleCarCard},
     computed: {
       ...mapGetters('carsData', {
-        truckCars: 'truckCars'
+        cars: 'cars'
       }),
     },
     methods: {
       ...mapActions('carsData', {
-        setTruckCars: 'setTruckCars'
+        setCars: 'setCars'
       }),
-      getTruckCars() {
-        if (this.truckCars.length === 0) {
-          this.$http.get(`cars/type/truck`)
-            .then(response => {
-              console.log(response)
-              this.setTruckCars({truckCars: response.body})
-            }, response => {
-              console.log("error callback")
-              console.log(response)
-            });
-        }
+      getCars() {
+        this.$http.get(`cars`)
+          .then(response => {
+            this.setCars({cars: response.body})
+          }, response => {
+          });
       },
     },
-    mounted() {
-      this.getTruckCars()
+  data() {
+    return {
+      truckCars: []
     }
+  },
+  mounted() {
+    this.getCars()
+  },
+  watch: {
+    cars: function (val) {
+      this.truckCars = val.filter(c =>   c.typeName === 'Truck')
+    }
+  }
   }
 )

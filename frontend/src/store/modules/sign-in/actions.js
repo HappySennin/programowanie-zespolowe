@@ -10,4 +10,7 @@ export default {
   setUserToken({commit, dispatch, state}, { token }) {
     commit(types.TOKEN, { token })
   },
+  setUserID({commit, dispatch, state}, { userID }) {
+    commit(types.USER_ID, { userID })
+  },
 }
