@@ -21,7 +21,8 @@ export default Vue.extend({
     if(!this.validLogin()) {
       this.open("Invalid Login", "Login must contain minimum eight characters or numbers")
     } else if (!this.validPassword()) {
-      this.open("Invalid Password", "Password must contain minimum eight characters, at least one letter, one number and one special character")
+      // this.open("Invalid Password", "Password must contain minimum eight characters, at least one letter, one number and one special character")
+      this.open("Invalid password", "Password must contain minimum eight characters or numbers")
     } else {
       var self = this;
       this.$http.post('users/sign-up', {login: self.login, password: self.password}, {headers: {"Content-Type": "application/json"}}).then(response => {
@@ -31,18 +32,13 @@ export default Vue.extend({
           self.login = ""
           self.password = ""
           this.$router.push('/sign-in')
+        } else {
+          self.open("Registration failed", "This login is used by other user. Please try again with other login")
         }
       }, response => {
-        // error callback
+        self.open("Registration failed", "This login is used by other user. Please try again with other login")
       });
     }
-    },
-
-    successCallback(){
-      console.log("success");
-    },
-    errorCallback() {
-      console.log("fail")
     },
 
     validLogin(){
@@ -51,7 +47,9 @@ export default Vue.extend({
     },
     validPassword(){
       //Minimum eight characters, at least one letter, one number and one special character
-      return this.password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,28}$/);
+      // return this.password.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,28}$/);
+      //Minimum eight characters only characters and numbers
+      return this.login.match(/^[A-Za-z\d]{8,15}$/);
     }
   }
 })
