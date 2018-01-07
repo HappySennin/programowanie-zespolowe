@@ -29,7 +29,8 @@ export default Vue.extend({
       })
     },
     handleUserLogin() {
-      if(this.validLogin()) {
+      if(true) {
+        // if(this.validLogin()) {
         this.placeholder = 'Password'
         this.active++;
         this.login = this.input
@@ -42,12 +43,23 @@ export default Vue.extend({
     },
     handleUserPassword() {
       this.password = this.input
-      if (this.validPassword()) {
-        //this is place to send request to server with credentials to verify if user exist
-        //if user exist we can change internal state to userLogged: true
-        this.setLoginMode({userLogged: true})
-        this.$router.push('/')
-        this.open("Sign in", "User logged successfully !")
+      // if (this.validPassword()) {
+        if (true) {
+        var self = this;
+        this.$http.post('login', {login: self.login, password: self.password}, {headers: {"Content-Type": "application/json"}}).then(response => {
+
+          console.log("SIGN IN USER RESPONSE: ")
+          console.log(response)
+          if(response.status === 200 && response.ok === true) {
+            this.setLoginMode({userLogged: true})
+            this.$router.push('/')
+            this.open("Sign in", "User logged successfully !")
+          } else {
+            this.handleLoginFailure()
+          }
+        }, response => {
+          this.handleLoginFailure()
+        });
       } else {
         this.handleLoginFailure()
         this.setLoginMode({userLogged: false})
@@ -66,7 +78,8 @@ export default Vue.extend({
     },
     validPassword(){
       //Minimum eight characters, at least one letter, one number and one special character
-      return this.input.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,28}$/);
+      // return this.input.match(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,28}$/);
+      return this.validLogin()
     }
   }
 })
