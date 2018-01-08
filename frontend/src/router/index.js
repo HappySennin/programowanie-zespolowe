@@ -10,6 +10,7 @@ import VanCars from '../components/Cars/Van/van-car.vue'
 import SignIn from '../components/Sign in/sign-in.vue'
 import Locations from '../components/Locations/locations.vue'
 import Registration from '../components/Registration/registration.vue'
+import MyReservations from '../components/My Reservations/my-reservations.vue'
 
 Vue.use(Router)
 
@@ -25,7 +26,7 @@ export default new Router({
     { path: '/sign-in', component: SignIn },
     { path: '/locations', component: Locations },
     { path: '/registration', component: Registration },
-
+    { path: '/my-reservations', component: MyReservations },
 
   ],
   mode: "history"

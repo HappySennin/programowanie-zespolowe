@@ -1,0 +1,3 @@
+<el-main>
+  <reservation-single-car-card v-for="(r, i) in reservations" :allPrice="r.price":reservationId="r.id" key="index" :booked="r.carInfo.booked" :id="r.carInfo.id" :reservationFinished="r.endDate !== null" :brand="r.carInfo.brandName" :model='r.carInfo.modelName' :power="r.carInfo.power" :type="r.carInfo.typeName" :price="r.carInfo.price" :image="r.carInfo.url"/>
+</el-main>

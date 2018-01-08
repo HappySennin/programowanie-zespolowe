@@ -19,6 +19,9 @@ export default Vue.extend({
         type: String,
         required: true
       },
+      allPrice: {
+      required: true
+      },
       price: {
         type: Number,
         required: true
@@ -35,6 +38,14 @@ export default Vue.extend({
         type: Boolean,
         required: true
       },
+      reservationFinished: {
+        type: Boolean,
+        required: true
+      },
+      reservationId: {
+        type: Number,
+        required: true
+      },
     },
     computed: {
       ...mapGetters('signIn', {
@@ -46,12 +57,15 @@ export default Vue.extend({
       ...mapGetters('carsData', {
         cars: 'cars',
         availableCars: "availableCars"
+      }),...mapGetters('reservations', {
+        reservations: 'reservations'
       }),
     },
   data() {
     return {
       centerDialogVisible: false,
-      carBooked: undefined
+      carBooked: undefined,
+      finished: undefined
     };
   },
   methods: {
@@ -62,44 +76,20 @@ export default Vue.extend({
       setCars: 'setCars',
       setAvailableCars: 'setAvailableCars'
     }),
-    handleRentCar() {
+    giveBack() {
       var self = this
+      //TODO latitude and longitude are constant, we have to think how to change it
+      this.$http.post('reservations/end', {id: self.reservationId, latitude: 51.1, longitude: 17.0}, {headers: {"Content-Type": "application/json",
+        "Authorization": self.token}}).then(response2 => {
+        if(response2.status === 200) {
+          this.finished = true
+        } else {
+          self.openDialog("Error", "Rent a car failure. Something went wrong")
+        }
+      }, response2 => {
+        self.openDialog("Error", "Rent a car failure. Something went wrong")
+      });
 
-      if(this.booked) {
-        this.openDialog("Warning", "Sorry, but this car is not available")
-      }
-      else if(this.userLogged){
-
-        this.$http.get(`users/getid/${self.userLogin}`, {headers: {"Content-Type": "application/json",
-          "Authorization": self.token}}).then(response => {
-          if(response.status === 200) {
-            self.setUserID({userID: response.body})
-            self.carBooked = true
-
-            self.$http.post('reservations/start', {userId: response.body, carId: self.id}, {headers: {"Content-Type": "application/json",
-              "Authorization": self.token}}).then(response2 => {
-              if(response2.status === 200) {
-
-                this.$router.push('/my-reservations')
-                self.centerDialogVisible = false
-              } else {
-                self.openDialog("Error", "Rent a car failure. Something went wrong")
-              }
-            }, response2 => {
-              self.openDialog("Error", "Rent a car failure. Something went wrong")
-            });
-
-
-          } else {
-            self.centerDialogVisible = true
-          }
-        }, response => {
-          self.centerDialogVisible = true
-        });
-
-      } else {
-        self.centerDialogVisible = true
-      }
     },
     openDialog(title, msg) {
       this.$alert(msg, title, {
@@ -111,13 +101,15 @@ export default Vue.extend({
       this.$router.push('/sign-in')
     }
   },
-  watch: {
-    centerDialogVisible: function (val) {
-      this.centerDialogVisible = val
-    }
-  },
   mounted() {
       this.carBooked = this.booked
+    this.finished = this.reservationFinished
+  },
+  watch: {
+    reservations: function (val) {
+      this.finished = val.find(e => e.id === this.reservationId).endDate !== null
+      },
+
   }
   }
 )

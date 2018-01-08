@@ -1,0 +1,59 @@
+<div class="reservation-single-car-card">
+  <el-row>
+    <el-col :span="4">
+      <br/>
+    </el-col>
+    <el-col :span="16">
+      <el-card class="box-card">
+        <el-row class="alert-container">
+          <el-alert v-if="finished"
+                    title="Car returned"
+                    type="info"
+                    :closable="false"
+                    show-icon>
+          </el-alert>
+          <el-alert v-else
+            title="Car now rented"
+            type="success"
+            :closable="false"
+            show-icon>
+          </el-alert>
+        </el-row>
+        <el-col :span="8">
+          <img class="car-image" :src="image"/>
+        </el-col>
+        <el-col :span="16">
+          <el-row>
+            <h1>{{brand}} {{model}}</h1>
+          </el-row>
+          <el-row>
+            <el-col :span="12">
+              <h3>Type: {{type}}</h3>
+            </el-col>
+            <el-col :span="12">
+              <h3 v-if="finished">Paid: {{this.allPrice}}$</h3>
+            </el-col>
+          </el-row>
+          <el-row>
+            <el-button plain class="rent-button" v-on:click="giveBack" v-if="!finished">Give back</el-button>
+          </el-row>
+        </el-col>
+      </el-card>
+      <el-dialog
+        title="Warning"
+        :visible.sync="centerDialogVisible"
+        width="50%"
+        center >
+        <span>To rent a car, you must first sign in</span>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="centerDialogVisible = false">Cancel</el-button>
+    <el-button type="primary" @click="moveToSignIn">Sign in</el-button>
+  </span>
+      </el-dialog>
+    </el-col>
+    <el-col :span="4">
+      <br/>
+    </el-col>
+  </el-row>
+
+</div>

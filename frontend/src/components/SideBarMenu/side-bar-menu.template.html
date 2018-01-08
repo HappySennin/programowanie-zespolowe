@@ -23,6 +23,12 @@
       </router-link>
     </el-submenu>
     </router-link>
+    <router-link to="/my-reservations">
+      <el-menu-item index="3" v-if="userLogged">
+        <img class="icon-assignment" src="../../assets/ic_assignment_black_24dp_1x.png" alt="my icon"/>
+        <span>My Reservations</span>
+      </el-menu-item>
+    </router-link>
     <router-link to="/locations">
     <el-menu-item index="3">
       <img class="icon-location" src="../../assets/ic_location_on_black_24dp_1x.png" alt="my icon"/>
