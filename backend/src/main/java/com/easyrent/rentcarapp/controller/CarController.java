@@ -1,9 +1,9 @@
 package com.easyrent.rentcarapp.controller;
 
 import com.easyrent.rentcarapp.entity.Car;
+import com.easyrent.rentcarapp.entity.Localization;
 import com.easyrent.rentcarapp.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
@@ -81,4 +81,9 @@ public class CarController {
         carService.deleteCarById(id);
     }
 
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/cars/location", method = RequestMethod.POST)
+    public List<Car> getAvailableCarsByNearestLocation(@RequestBody Localization location) {
+        return carService.getCarsByLocation(location);
+    }
 }

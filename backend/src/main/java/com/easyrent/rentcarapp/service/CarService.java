@@ -1,6 +1,7 @@
 package com.easyrent.rentcarapp.service;
 
 import com.easyrent.rentcarapp.entity.Car;
+import com.easyrent.rentcarapp.entity.Localization;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -28,4 +29,6 @@ public interface CarService {
     void updateCar(Car car);
 
     void deleteCarById(Long id);
+
+    List<Car> getCarsByLocation(Localization location);
 }

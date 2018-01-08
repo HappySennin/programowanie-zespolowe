@@ -7,5 +7,6 @@ public class SecurityConstants {
     public static final String HEADER_STRING = "Authorization";
     public static final String SIGN_UP_URL = "/users/sign-up";
     public static final String CARS_URL = "/cars/**";
+    public static final String CARS_LOCATION = "/cars/location";
     public static final String RESERVATION_URL = "/reservations/car/{car_id}/start/{start}/end/{end}";
 }

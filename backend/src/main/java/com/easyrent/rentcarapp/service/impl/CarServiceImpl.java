@@ -1,6 +1,7 @@
 package com.easyrent.rentcarapp.service.impl;
 
 import com.easyrent.rentcarapp.entity.Car;
+import com.easyrent.rentcarapp.entity.Localization;
 import com.easyrent.rentcarapp.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import com.easyrent.rentcarapp.repository.CarRepository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service("carService")
@@ -72,5 +74,15 @@ public class CarServiceImpl implements CarService {
     @Override
     public void deleteCarById(Long id) {
         carRepository.delete(id);
+    }
+
+    @Override
+    public List<Car> getCarsByLocation(Localization location) {
+        Double latitude = location.getLatitude();
+        Double longitude = location.getLongitude();
+        List<Car> cars = findAllAvailableCars();
+        Collections.sort(cars,
+                (c1, c2) -> c1.getLocalization().getDistanceFromPoint(latitude, longitude).compareTo(c2.getLocalization().getDistanceFromPoint(latitude, longitude)));
+        return cars;
     }
 }
