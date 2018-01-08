@@ -77,8 +77,10 @@ public class ReservationController {
     @CrossOrigin(origins = "http://localhost:8000")
     @RequestMapping(value = "/reservations/end", method = RequestMethod.POST)
     public void endReservation(@RequestBody Map<String, Object> payload) {
-        reservationService.endReservation(Long.parseLong((String) payload.get("id")),
-                Double.parseDouble((String) payload.get("latitude")),
-                Double.parseDouble((String) payload.get("longitude")));
+        System.out.println(payload);
+        reservationService.endReservation(Long.parseLong(String.valueOf(payload.get("id"))),
+                Double.parseDouble(String.valueOf(payload.get("latitude"))),
+                Double.parseDouble(String.valueOf(payload.get("longitude")))
+        );
     }
 }
