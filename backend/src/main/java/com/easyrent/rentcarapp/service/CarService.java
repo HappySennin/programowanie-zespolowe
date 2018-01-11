@@ -31,4 +31,6 @@ public interface CarService {
     void deleteCarById(Long id);
 
     List<Car> getCarsByLocation(Localization location);
+
+    void updateCarLocation(long carId, double latitude, double longitude);
 }

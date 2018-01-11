@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class CarController {
@@ -85,5 +86,13 @@ public class CarController {
     @RequestMapping(value = "/cars/location", method = RequestMethod.POST)
     public List<Car> getAvailableCarsByNearestLocation(@RequestBody Localization location) {
         return carService.getCarsByLocation(location);
+    }
+
+    @CrossOrigin(origins = "http://localhost:8000")
+    @RequestMapping(value = "/cars/location/update", method = RequestMethod.POST)
+    public void updateCarLocation(@RequestBody Map<String, Object> payload) {
+        carService.updateCarLocation(Long.parseLong(String.valueOf(payload.get("id"))),
+                Double.parseDouble(String.valueOf(payload.get("latitude"))),
+                Double.parseDouble(String.valueOf(payload.get("longitude"))));
     }
 }

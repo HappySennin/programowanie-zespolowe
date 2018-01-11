@@ -85,4 +85,18 @@ public class CarServiceImpl implements CarService {
                 (c1, c2) -> c1.getLocalization().getDistanceFromPoint(latitude, longitude).compareTo(c2.getLocalization().getDistanceFromPoint(latitude, longitude)));
         return cars;
     }
+
+    @Override
+    public void updateCarLocation(long carId, double latitude, double longitude) {
+        Car requestedCar = carRepository.findById(carId);
+        requestedCar.setLocalization(getLocalizationFromCoordinates(latitude, longitude));
+        carRepository.save(requestedCar);
+    }
+
+    private Localization getLocalizationFromCoordinates(double latitude, double longitude) {
+        Localization localization = new Localization();
+        localization.setLatitude(latitude);
+        localization.setLongitude(longitude);
+        return localization;
+    }
 }
