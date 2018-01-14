@@ -80,11 +80,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public void endReservation(Long reservationId, double latitude, double longitude) {
+    public void endReservation(Long reservationId) {
         Reservation reservation = reservationRepository.findById(reservationId);
 
         setReservationDataWhenEnds(reservation);
-        setCarDataAfterReservation(reservation, latitude, longitude);
+        setCarDataAfterReservation(reservation);
     }
 
     private void setReservationDataWhenEnds(Reservation reservation) {
@@ -95,10 +95,9 @@ public class ReservationServiceImpl implements ReservationService {
         reservationRepository.save(reservation);
     }
 
-    private void setCarDataAfterReservation(Reservation reservation, double latitude, double longitude) {
+    private void setCarDataAfterReservation(Reservation reservation) {
         Car requestedCar = carRepository.findById(reservation.getCarId());
         requestedCar.setBooked(false);
-        requestedCar.setLocalization(getActualLocalization(latitude, longitude));
         carRepository.save(requestedCar);
     }
 
