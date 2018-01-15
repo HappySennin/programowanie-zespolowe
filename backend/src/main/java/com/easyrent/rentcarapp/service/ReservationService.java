@@ -25,5 +25,5 @@ public interface ReservationService {
 
     void startNewReservation(Reservation reservation);
 
-    void endReservation(Long reservationId, double latitude, double longitude);
+    void endReservation(Long reservationId);
 }
