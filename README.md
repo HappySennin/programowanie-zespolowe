@@ -24,4 +24,27 @@ npm run dev
 ## 2. Access App locally
 To access app please open web browser and enter following:
 
+  **http://localhost:8000**
+
+__________________________________________________________________________________
+
+## Backend Prerequisites
+You are expected to have:
+
+- Java 1.8
+- Maven
+
+available on your machine.
+
+## 1. How to start API
+
+Run the following command under backend/ directory:
+
+```
+mvn spring-boot:run
+```
+
+## 2. Access API
+You can access API on:
+
   **http://localhost:8080**
